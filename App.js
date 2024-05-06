@@ -24,7 +24,7 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.title}>Grupo Garza Limon</Text>
       <Image
-        source={require('./img/logo.png')} // Asegúrate de colocar la ruta correcta de tu imagen
+        source={require('./img/logo.png')}
         style={styles.image}
       />
       <Text style={styles.subtitle}>Test created by Mibzar Galarza</Text>
