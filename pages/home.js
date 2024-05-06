@@ -57,7 +57,7 @@ const HomeScreen = () => {
     );
 
     const renderFooter = () => {
-        return <Text>Loading...</Text>;
+        return <Text style={styles.loading}>Loading...</Text>;
     };
 
     const handleLoadMore = () => {
@@ -99,6 +99,12 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: 'bold',
+    },
+    loading:{
+        textAlign:"center",
+        fontSize: 18,
+        fontWeight: 'bold',
+        padding:15
     },
     logout: {
         fontSize: 16,
