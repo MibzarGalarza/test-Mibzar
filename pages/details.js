@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, Pressable } from 'react-native';
 import HomeScreen from './home';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const DetailScreen = ({ itemId }) => {
     const [postDetails, setPostDetails] = useState(null);
@@ -33,14 +34,18 @@ const DetailScreen = ({ itemId }) => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
-                <Text style={styles.backText}>Back</Text>
-            </TouchableOpacity>
+            <View style={styles.header}>
+                <Pressable style={styles.button} onPress={handleBackPress}>
+                    <AntDesign name="arrowleft" style={{ fontSize: 30, color: "#fff", fontWeight: "bold", }} />
+                </Pressable>
+            </View>
             <Text style={styles.title}>{postDetails.title.rendered}</Text>
-            <Image
-                source={{ uri: postDetails._embedded['wp:featuredmedia'][0].source_url }}
-                style={styles.image}
-            />
+            <View style={styles.imageContainer}>
+                <Image
+                    source={{ uri: postDetails._embedded['wp:featuredmedia'][0].source_url }}
+                    style={styles.image}
+                />
+            </View>
             <Text style={styles.author}>Autor: {postDetails._embedded.author[0].name}</Text>
             <ScrollView style={styles.scrollView}>
                 <Text style={styles.content}>{processedContent}</Text>
@@ -52,7 +57,16 @@ const DetailScreen = ({ itemId }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
+        backgroundColor: '#E0E0E0'
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 16,
+        paddingTop: 16,
+        paddingBottom: 20,
+        backgroundColor: '#0A3978'
     },
     backButton: {
         position: 'absolute',
@@ -65,28 +79,33 @@ const styles = StyleSheet.create({
         color: 'blue',
     },
     title: {
+        paddingLeft: 20,
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 10,
         marginTop: 30,
-        textAlign:"center"
+        textAlign: "center"
+    },
+    imageContainer: {
+        alignItems: "center",
+        justifyContent: "center",
+        alignContent: "center",
+        marginBottom: 10,
     },
     image: {
-        width: "100%",
+        width: 355,
         height: 200,
-        marginBottom: 10,
-        resizeMode: 'cover',
     },
     author: {
-        padding:10,
+        padding: 20,
         fontSize: 16,
-        fontWeight:'bold',
+        fontWeight: 'bold',
         marginBottom: 10,
     },
     content: {
-        padding:10,
+        padding: 20,
         fontSize: 16,
-       textAlign:"left"
+        textAlign: "left"
     },
     scrollView: {
         flex: 1,

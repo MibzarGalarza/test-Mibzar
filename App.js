@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, Image  } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, Pressable } from 'react-native';
 import HomeScreen from './pages/home';
 
 export default function App() {
@@ -22,7 +22,6 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Grupo Garza Limon</Text>
       <Image
         source={require('./img/logo.png')}
         style={styles.image}
@@ -43,13 +42,32 @@ export default function App() {
         secureTextEntry={true}
         placeholder="Introduce tu contraseña"
       />
-      <Button title="Iniciar sesión" onPress={handleLogin} />
+      <Pressable style={styles.button} onPress={handleLogin}>
+        <Text style={styles.text}>Iniciar sesión</Text>
+      </Pressable>
       <StatusBar style="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop:15,
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: '#0A3978',
+  },
+  text: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
